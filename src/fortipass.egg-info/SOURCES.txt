@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+src/fortipass.egg-info/PKG-INFO
+src/fortipass.egg-info/SOURCES.txt
+src/fortipass.egg-info/dependency_links.txt
+src/fortipass.egg-info/entry_points.txt
+src/fortipass.egg-info/not-zip-safe
+src/fortipass.egg-info/top_level.txt

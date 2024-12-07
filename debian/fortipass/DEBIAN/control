@@ -1,0 +1,9 @@
+Package: fortipass
+Version: 0.1.1
+Architecture: amd64
+Maintainer: Piotr Bodych <polpiotech@gmail.com>
+Installed-Size: 23
+Depends: python3:any
+Section: python
+Priority: optional
+Description: Password Generator Program

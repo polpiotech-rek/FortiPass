@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "FortiPass has been installed!"

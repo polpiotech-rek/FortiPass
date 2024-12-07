@@ -1,0 +1,1 @@
+1. Dodać możliwość wysłania hasła za pomocą szyfrowanej wiadomości e-mail.

@@ -1,0 +1,32 @@
+Format: 1.8
+Date: Fri, 30 Nov 2024 12:00:00 +0000
+Source: fortipass
+Binary: fortipass
+Built-For-Profiles: noudeb
+Architecture: source amd64
+Version: 0.1.1
+Distribution: stable
+Urgency: medium
+Maintainer: Piotr Bodych <polpiotech@gmail.com>
+Changed-By: Piotr Bodych <polpiotech@gmail.com.com>
+Description:
+ fortipass  - Password Generator Program
+Changes:
+ fortipass (0.1.1) stable; urgency=medium
+ .
+   * Initial release.
+Checksums-Sha1:
+ 274ac6d5840b8007cd26fdae98f78416124a1168 695 fortipass_0.1.1.dsc
+ c75abdc452444b6f44d92e9cdf8578555ecee636 4863399 fortipass_0.1.1.tar.gz
+ f51457b9e275fe9d03c7815e4fe3d1f1512b80b7 7438 fortipass_0.1.1_amd64.buildinfo
+ 292735b4fb500adaf253c745886f622032d5cb78 3454 fortipass_0.1.1_amd64.deb
+Checksums-Sha256:
+ ca338bf9a8b047e135f88732ebcbb8b156dfb6ef76b7a723be25022e6e15491f 695 fortipass_0.1.1.dsc
+ 6b8e85e8b60417f4d8b863c5f1019092cd08d20eb58ffd653290d94491b8cad8 4863399 fortipass_0.1.1.tar.gz
+ 7158596791a09fcb16ca15d443d10f7a6c72faa1202cc03382ee8cf75fe08a66 7438 fortipass_0.1.1_amd64.buildinfo
+ 0f3f43236f367b64fe02bb80b28dad0e0bb751a3c44482ecad772187d34720af 3454 fortipass_0.1.1_amd64.deb
+Files:
+ 4c15c73417f8d5833dcaa30ee27cab10 695 python optional fortipass_0.1.1.dsc
+ 63edb399d467f2db906a0a2eb9859b09 4863399 python optional fortipass_0.1.1.tar.gz
+ 7ee70c2c3c24144eef9c61c5a5f7b43e 7438 python optional fortipass_0.1.1_amd64.buildinfo
+ d22111462528b2f985a635da1ace1c32 3454 python optional fortipass_0.1.1_amd64.deb

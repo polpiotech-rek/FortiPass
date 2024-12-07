@@ -7,14 +7,14 @@
 import tkinter as tk, threading, logging, secrets, string, sys, random
 from tkinter import messagebox, Toplevel, PhotoImage
 from pathlib import Path
-
+from lock import AppLocker
 
 class PasswordGeneratorApp:
     def __init__(self, root):
         """Inicjalizacja aplikacji z głównym oknem"""
         self.root = root
-        self.root.title("Password Generator")
-        self.root.geometry("375x525")
+        self.root.title("FortiPass®")
+        self.root.geometry("375x545")
         self.root.resizable(False, False)
 
         self.chunk_size = 1000  
@@ -31,6 +31,12 @@ class PasswordGeneratorApp:
             self.current_language = "EN"
 
             logging.warning("Initiating the program startup process.")
+
+            # Tworzenie instancji lockera
+            self.locker = AppLocker()
+
+            # Próba zablokowania instancji
+            self.locker.lock_instance()
 
             # Inicjalizacja ustawień
             self.setup_ui()
@@ -110,7 +116,7 @@ class PasswordGeneratorApp:
         """Słownik z tłumaczeniami"""
         return {
             "EN": {
-                "title": "Password Generator",
+                "title": "FortiPass®",
                 "language_menu": "Language",
                 "password_length": "Password length:",
                 "letters": "Letters (a-Z)",
@@ -132,7 +138,7 @@ class PasswordGeneratorApp:
                 "select_option": "You must select at least one option!",
             },
             "PL": {
-                "title": "Generator Haseł",
+                "title": "FortiPass®",
                 "language_menu": "Język",
                 "password_length": "Długość hasła:",
                 "letters": "Litery (a-Z)",
@@ -254,6 +260,9 @@ class PasswordGeneratorApp:
         self.log_button = tk.Button(button_frame, text=self.translations[self.current_language]["log_btn"], command=self.show_log, width=15)
         self.log_button.pack(side="top", pady=5)
     
+        self.footer_label = tk.Label(self.root, text="© 2024 FortiPass", font=("Courier", 8, "bold"), fg="gray")
+        self.footer_label.pack(side=tk.BOTTOM, pady=5)
+
     def generate_password(self):
         """Generowanie hasła na podstawie wybranych opcji"""
         try:
@@ -265,7 +274,7 @@ class PasswordGeneratorApp:
 
             # Inicjalizacja procesu generowania hasła.
             logging.warning("Initializing the password generation process.")
-            
+
             if length < 4:
                 raise ValueError("Password length must be at least 4 characters.")
             if length > 128:
@@ -275,7 +284,7 @@ class PasswordGeneratorApp:
             use_letters = self.letters_var.get()
             use_numbers = self.numbers_var.get()
             use_special = self.special_var.get()
-            
+
             # Logowanie składników hasła
             composition = []
             if use_letters:
@@ -312,7 +321,7 @@ class PasswordGeneratorApp:
 
             # Inicjalizowanie listy do hasła
             password = []
-        
+
             # Dodanie po jednym znaku z każdej wybranej opcji
             if use_letters:
                 password.append(secrets.choice(string.ascii_letters))
@@ -330,7 +339,7 @@ class PasswordGeneratorApp:
                 all_selected_characters += string.digits
             if use_special:
                 all_selected_characters += string.punctuation
-            
+
             # Generowanie pozostałych znaków
             password += [secrets.choice(all_selected_characters) for _ in range(remaining_length)]
 
@@ -343,11 +352,11 @@ class PasswordGeneratorApp:
             # Wyświetlanie hasła i jego siły
             self.password_entry.delete(0, tk.END)
             self.password_entry.insert(0, password)
-            
+
             # Ocena złożoności wygenerowanego hasła (siła hasła)
             strength, color = self.evaluate_password_strength(password)
             self.update_strength_bar(strength, color)
-            
+
             # Automatyczne zaznaczenie wygenerowanego hasła
             self.password_entry.select_range(0, tk.END)
 
@@ -359,7 +368,7 @@ class PasswordGeneratorApp:
 
         except ValueError as e:
             logging.error(f"Input error: {str(e)}!")
-            messagebox.showerror("Error", str(e))        
+            messagebox.showerror("Error", str(e))
         except Exception as e:
             logging.error(f"Generating the password: {str(e)}!")
             messagebox.showerror("Error", "There was a problem generating the password!")
@@ -504,7 +513,7 @@ class PasswordGeneratorApp:
         """Pokazuje zawartość logu w nowym oknie"""
         try:
             log_window = tk.Toplevel(self.root)
-            log_window.title("Log")
+            log_window.title("FortiPass® - Event Log")
 
             # Wymiary ekranu
             screen_width = self.root.winfo_screenwidth()
@@ -602,9 +611,9 @@ class PasswordGeneratorApp:
         try:
             logging.debug("Shutting down the program:".upper())
 
-            answer = self.shutdown_program_window("Exit Program", "Do you really want to exit the program?")
+            answer = self.shutdown_program_window("FortiPass® - Exit program", "Do you really want to exit the program?")
             if answer:
-                logging.info("Terminating the program instance.")
+                self.locker.unlock_instance()
                 root.quit()
                 logging.info("The program shutdown successfully.")
             else:
@@ -613,6 +622,9 @@ class PasswordGeneratorApp:
             logging.error(f"Shutting down the program: {str(e)}!")
             messagebox.showerror("Error", "The program faced an issue that stopped it from closing properly!")
             sys.exit(1)
+        finally:
+            """ Upewnij się, że po zakończeniu działania aplikacji odblokujesz ją"""
+            self.locker.unlock_instance()
 
 
 # Utworzenie głównego okna aplikacji

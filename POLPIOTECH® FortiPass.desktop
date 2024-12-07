@@ -1,8 +1,8 @@
 [Desktop Entry]
 Categories=Utility;
 Comment=Password Generator Program
-Exec=bash -c "source '$HOME/Desktop/FortiPass/venv/bin/activate' && python3 '$HOME/Desktop/FortiPass/src/main.py'"
-Icon=/home/rekbod/Desktop/FortiPass/img/icon.png
+Exec=bash -c "source '$HOME/Pulpit/FortiPass/venv/bin/activate' && python3 '$HOME/Pulpit/FortiPass/src/main.py'"
+Icon=/home/rekbod/Pulpit/FortiPass/img/icon.png
 Name[pl_PL]=POLPIOTECH® FortiPass
 Name=POLPIOTECH® FortiPass
 Terminal=false

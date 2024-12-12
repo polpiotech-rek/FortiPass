@@ -1,4 +1,5 @@
-1. To create a function for sending an email message with an encrypted password.
-2. To install a program for viewing *.md files.
-3. Installation of the FortiPass program on an operating system.
-4. Translating the alert window's closing feature in the FortiPass program.
+[x] 1. To create a function for sending an email message with an encrypted password.
+[x] 2. To install a program for viewing *.md files.
+[x] 3. Installation of the FortiPass program on an operating system.
+[x] 4. Translating the alert window's closing feature in the FortiPass program.
+[x] 5. Creating function the clipboard writing inside the program with encryption base.

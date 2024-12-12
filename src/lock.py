@@ -34,7 +34,7 @@ class AppLocker:
             )
 
         except Exception as e:
-            print(f"Error setting up logging: {e}!")
+            print(f"Error setting up logging [in_LOCK]: {e}!")
             sys.exit(1)
 
     def lock_instance(self):

@@ -14,7 +14,7 @@ class PasswordGeneratorApp:
         """Inicjalizacja aplikacji z głównym oknem"""
         self.root = root
         self.root.title("FortiPass®")
-        self.root.geometry("375x545")
+        self.root.geometry("375x555")
         self.root.resizable(False, False)
 
         self.chunk_size = 1000  
@@ -55,7 +55,7 @@ class PasswordGeneratorApp:
             
         except Exception as e:
             logging.error(f"Startup Error: {str(e)}!")
-            messagebox.showerror("Error", "An error occurred during the program startup!")
+            messagebox.showerror("FortiPass® - Error", "An error occurred during the program startup!")
             sys.exit(1)
   
         logging.info("The program was started successfully.")
@@ -74,7 +74,7 @@ class PasswordGeneratorApp:
                 self.root.iconphoto(True, icon)
         except Exception as e:
             logging.error(f"Setting up icon: {str(e)}!")
-            messagebox.showerror("Error", "Failed to load the icon!")
+            messagebox.showerror("FortiPass® - Error", "Failed to load the icon!")
 
     def setup_logging(self):
         """Ustawienia loggowania"""
@@ -100,7 +100,7 @@ class PasswordGeneratorApp:
 
         except Exception as e:
             logging.error(f"Setting up logging: {str(e)}!")
-            messagebox.showerror("Error", "An error occurred while starting the program related to logging events to the log file!")
+            messagebox.showerror("FortiPass® - Error", "An error occurred while starting the program related to logging events to the log file!")
 
     def handle_enter_key(self, event):
         """Przechwytuje naciśnięcie klawisza Enter dla aktywnego przycisku lub pola tekstowego"""
@@ -197,7 +197,7 @@ class PasswordGeneratorApp:
             logging.info("The language setting was changed successfully.")
         except Exception as e:
             logging.error(f"Setting language: {str(e)}!")
-            messagebox.showerror("Error", "An error occurred while changing the language setting!")
+            messagebox.showerror("FortiPass® - Error", "An error occurred while changing the language setting!")
 
     def update_ui_texts(self):
         """Aktualizuje teksty w interfejsie na podstawie wybranego języka"""
@@ -297,7 +297,7 @@ class PasswordGeneratorApp:
             if not composition:
                 error_message = "You must select at least one option!"
                 logging.error("Component error: No component was selected to generate the password!")
-                messagebox.showerror("Error", error_message)
+                messagebox.showerror("FortiPass® - Error", error_message)
                 return
 
             if not any([use_letters, use_numbers, use_special]):
@@ -368,10 +368,10 @@ class PasswordGeneratorApp:
 
         except ValueError as e:
             logging.error(f"Input error: {str(e)}!")
-            messagebox.showerror("Error", str(e))
+            messagebox.showerror("FortiPass® - Error", str(e))
         except Exception as e:
             logging.error(f"Generating the password: {str(e)}!")
-            messagebox.showerror("Error", "There was a problem generating the password!")
+            messagebox.showerror("FortiPass® - Error", "There was a problem generating the password!")
 
     def update_password_strength(self, strength_value):
         """Aktualizuje etykietę siły hasła i jej wartość"""
@@ -427,13 +427,13 @@ class PasswordGeneratorApp:
                 self.root.clipboard_append(password)  # Kopiowanie do schowka
                 self.root.update()  # Zaktualizowanie schowka w systemie
                 logging.info("The password was copied successfully.")
-                messagebox.showinfo("Success", "Password copied to clipboard!")
+                messagebox.showinfo("FortiPass® - Success", "Password copied to clipboard!")
             except Exception as e:
                 logging.error(f"Copying to clipboard: {str(e)}!")
-                messagebox.showerror("Error", "There was a problem copying the password to the clipboard!")
+                messagebox.showerror("FortiPass® - Error", "There was a problem copying the password to the clipboard!")
         else:
             logging.error("The attempt to copy an empty password was made!")
-            messagebox.showerror("Error", "There is no generated password to copy!")
+            messagebox.showerror("FortiPass® - Error", "There is no generated password to copy!")
 
     def on_scroll(self, event, log_text):
         """Reakcja na przewijanie"""
@@ -461,7 +461,7 @@ class PasswordGeneratorApp:
 
         except Exception as e:
             logging.error(f"Loading more the logs: {str(e)}!")
-            messagebox.showerror("Error", "The event log file could not be opened!")
+            messagebox.showerror("FortiPass® - Error", "The event log file could not be opened!")
 
     def show_log(self):
         """Otworzenie logu w nowym oknie w oddzielnym wątku"""
@@ -491,15 +491,15 @@ class PasswordGeneratorApp:
 
             except FileNotFoundError as fnf_error:
                 logging.error(f"Loading the log file: {str(fnf_error)}!")
-                messagebox.showerror("Error", "The log file could not be found!")
+                messagebox.showerror("FortiPass® - Error", "The log file could not be found!")
 
             except PermissionError as perm_error:
                 logging.error(f"Loading the log file: {str(perm_error)}!")
-                messagebox.showerror("Error", "You don't have the required permissions to access the log file.!")
+                messagebox.showerror("FortiPass® - Error", "You don't have the required permissions to access the log file.!")
 
             except Exception as e:
                 logging.error(f"Error loading the event log file: {str(e)}!")
-                messagebox.showerror("Error", "The event log file could not be opened!")
+                messagebox.showerror("FortiPass® - Error", "The event log file could not be opened!")
 
         try:
             # Uruchomienie nowego wątku.
@@ -507,7 +507,7 @@ class PasswordGeneratorApp:
             logging.info("The event log window was started in new thread successfully.")
         except Exception as e:
             logging.error("Starting a new thread: An error occurred while trying to start a new thread!")
-            messagebox.showerror("Error", "An error occurred while trying to open event log in a new thread!")
+            messagebox.showerror("FortiPass® - Error", "An error occurred while trying to open event log in a new thread!")
 
     def show_log_window(self, log_content, log_text, scrollbar):
         """Pokazuje zawartość logu w nowym oknie"""
@@ -546,7 +546,7 @@ class PasswordGeneratorApp:
             log_text.tag_config("DEBUG", foreground="blue")
             log_text.tag_config("INFO", foreground="green")
             log_text.tag_config("WARNING", foreground="orange")
-            log_text.tag_config("ERROR", foreground="red")
+            log_text.tag_config("FortiPass® - Error", foreground="red")
 
             # Wstawienie zawartości logu z kolorowaniem
             for line in log_content.splitlines():
@@ -574,7 +574,7 @@ class PasswordGeneratorApp:
 
         except Exception as e:
             logging.error(f"Displaying the event log window: {str(e)}!")
-            messagebox.showerror("Error", "Failed to display the event log!")
+            messagebox.showerror("FortiPass® - Error", "Failed to display the event log!")
 
     def shutdown_program_window(self, title, message):
         """Wyświetla okno dialogowe z pytaniem o zamknięcie programu 'Yes/No'."""
@@ -620,7 +620,7 @@ class PasswordGeneratorApp:
                 logging.info("The program shutdown cancelled by the user.")
         except Exception as e:
             logging.error(f"Shutting down the program: {str(e)}!")
-            messagebox.showerror("Error", "The program faced an issue that stopped it from closing properly!")
+            messagebox.showerror("FortiPass® - Error", "The program faced an issue that stopped it from closing properly!")
             sys.exit(1)
         finally:
             """ Upewnij się, że po zakończeniu działania aplikacji odblokujesz ją"""
